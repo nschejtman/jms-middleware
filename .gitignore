@@ -1,1 +1,4 @@
+cli/instatweet-cli/.idea/
+glassfish/middlewarejmsfrontend/.idea/
 wildfly/instatweet/.idea/
+*.iml

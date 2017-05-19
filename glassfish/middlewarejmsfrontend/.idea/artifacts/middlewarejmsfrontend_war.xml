@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="middlewarejmsfrontend:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="mw.war">
-      <element id="artifact" artifact-name="middlewarejmsfrontend:war exploded" />
-    </root>
-  </artifact>
-</component>
