@@ -7,9 +7,14 @@ import com.nschejtman.model.User;
 import com.nschejtman.utils.UserDao;
 
 public class InitialState extends ApplicationState {
+    private final ApplicationContext context;
 
+    public InitialState(ApplicationContext context) {
+        this.context = context;
+        context.setPrecommand("");
+    }
 
-    public ApplicationState command(ApplicationContext context, Command command) {
+    public ApplicationState commandImpl(Command command) {
         final String commandName = command.getName();
         if (commandName.equals("help")) {
             help();
@@ -20,7 +25,7 @@ public class InitialState extends ApplicationState {
             return register(context, command);
 
         }
-        return error();
+        return error(commandName);
     }
 
     private void help(){
@@ -37,10 +42,10 @@ public class InitialState extends ApplicationState {
         final String password = command.getParam("-p");
         if (UserDao.validate(username, password)) {
             final User user = UserDao.get(username);
-            context.addVar("user", user);
+            context.setVar("user", user);
             System.out.println("Logged as " + username);
             System.out.println();
-            return new LoggedState();
+            return new LoggedState(context);
         } else {
             System.out.println("Invalid user or password");
             System.out.println();
@@ -53,12 +58,12 @@ public class InitialState extends ApplicationState {
         final String password = command.getParam("-p");
         UserDao.register(username, password);
         final User user = new User(username, password);
-        context.addVar("user", user);
+        context.setVar("user", user);
         System.out.println();
         System.out.println("Registration successful");
         System.out.println("Logged as " + username);
         System.out.println();
-        return new LoggedState();
+        return new LoggedState(context);
     }
 
 

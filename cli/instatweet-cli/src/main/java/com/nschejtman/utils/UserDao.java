@@ -10,7 +10,11 @@ public class UserDao {
     private static Map<String, User> users = new HashMap<String, User>();
 
     public static boolean validate(@NotNull String username, @NotNull String password) {
-        final String retrievedPassword = users.get(username).getPassword();
+        final User user = users.get(username);
+        if(user == null) {
+            return false;
+        }
+        final String retrievedPassword = user.getPassword();
         return retrievedPassword != null && retrievedPassword.equals(password);
     }
 
