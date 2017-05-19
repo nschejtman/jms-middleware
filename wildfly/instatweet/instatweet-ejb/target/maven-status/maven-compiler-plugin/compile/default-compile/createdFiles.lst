@@ -1,0 +1,6 @@
+org/nschejtman/service/JMSHandler.class
+org/nschejtman/util/IdGenerator.class
+org/nschejtman/service/JMSTweetListener.class
+org/nschejtman/model/User.class
+org/nschejtman/model/Instatweet.class
+org/nschejtman/util/UserDao.class

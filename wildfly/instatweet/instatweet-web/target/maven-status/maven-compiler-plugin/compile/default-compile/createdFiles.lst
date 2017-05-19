@@ -1,0 +1,4 @@
+org/nschejtman/controller/NewPostServlet.class
+org/nschejtman/controller/LogoutServlet.class
+org/nschejtman/controller/LoginServlet.class
+org/nschejtman/controller/RegisterServlet.class
