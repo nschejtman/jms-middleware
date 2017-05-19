@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="instatweet-ejb:ejb">
+    <output-path>$PROJECT_DIR$/instatweet-ejb/target</output-path>
+    <root id="archive" name="instatweet-ejb.jar">
+      <element id="artifact" artifact-name="instatweet-ejb:ejb exploded" />
+    </root>
+  </artifact>
+</component>

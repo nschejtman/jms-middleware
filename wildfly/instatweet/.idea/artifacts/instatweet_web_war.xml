@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="instatweet-web:war">
+    <output-path>$PROJECT_DIR$/instatweet-web/target</output-path>
+    <root id="archive" name="instatweet-web.war">
+      <element id="artifact" artifact-name="instatweet-web:war exploded" />
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="instatweet-ear:ear">
+    <output-path>$PROJECT_DIR$/instatweet-ear/target</output-path>
+    <root id="archive" name="instatweet-ear.ear">
+      <element id="artifact" artifact-name="instatweet-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

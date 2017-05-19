@@ -1,0 +1,10 @@
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/servlets/LogoutServlet.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/jms/JMSTweetListener.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/utils/UserDao.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/model/User.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/servlets/RegisterServlet.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/jms/JMSHandler.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/servlets/LoginServlet.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/model/Instatweet.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/utils/IdGenerator.java
+/Users/nicolas/projects/maven-middleware/middlewarejmsfrontend/src/main/java/servlets/NewPostServlet.java
