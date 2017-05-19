@@ -1,44 +1,36 @@
 package com.nschejtman.jms;
 
 
-import com.nschejtman.model.*;
-import javax.annotation.Resource;
+import com.nschejtman.model.Instatweet;
+import com.nschejtman.model.User;
+
 import javax.jms.*;
 import javax.naming.InitialContext;
-import javax.naming.NamingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class JMSHandler {
-
-    @Resource(lookup = "jms/__defaultConnectionFactory")
-    private ConnectionFactory cf;
+    private static JMSContext context;
+    private static Map<String, TemporaryTopic> userTopics = new HashMap<>();
 
     public void tweet(Instatweet tweet) {
-        final Topic topic;
-        try {
-            topic = InitialContext.doLookup("jms/user/" + tweet.getUser().getUsername());
-            final JMSContext context = cf.createContext();
-            final JMSProducer producer = context.createProducer();
-            producer.send(topic, tweet);
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
-
+        final TemporaryTopic topic = userTopics.get(tweet.getUser().getUsername());
+        final JMSProducer producer = context.createProducer();
+        producer.send(topic, tweet);
     }
 
     public void follow(User follower, User followed) {
-        final Topic topic;
-        try {
-            topic = InitialContext.doLookup("jms/user/" + followed.getUsername());
-            final JMSContext context = cf.createContext();
-            final JMSConsumer consumer = context.createConsumer(topic);
-            consumer.setMessageListener(new JMSTweetListener(follower));
-        } catch (NamingException e) {
-            e.printStackTrace();
-        }
+        final TemporaryTopic topic = userTopics.get(followed.getUsername());
+        final JMSConsumer consumer = context.createConsumer(topic);
+        consumer.setMessageListener(new JMSTweetListener(follower));
     }
 
     public void registerUser(User user) {
-        final JMSContext context = cf.createContext();
-        final Topic topic = context.createTopic("jms/user/" + user.getUsername());
+        final TemporaryTopic temporaryTopic = context.createTemporaryTopic();
+        userTopics.put(user.getUsername(), temporaryTopic);
+    }
+
+    public static void setContext(JMSContext context) {
+        JMSHandler.context = context;
     }
 }

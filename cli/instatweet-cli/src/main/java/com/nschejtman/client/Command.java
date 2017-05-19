@@ -11,9 +11,16 @@ public class Command {
     Command(String line) {
         final StringTokenizer tokenizer = new StringTokenizer(line, " ");
         name = tokenizer.nextToken();
-        params = new HashMap<String, String>();
+        params = new HashMap<>();
+        int paramIdx = 1;
         while (tokenizer.hasMoreTokens()) {
-            params.put(tokenizer.nextToken(), tokenizer.nextToken());
+            final String nextToken = tokenizer.nextToken();
+            if (nextToken.charAt(0) == '-') {
+                params.put(nextToken, tokenizer.nextToken());
+            } else {
+                params.put("-" + paramIdx, nextToken);
+                paramIdx++;
+            }
         }
     }
 
@@ -21,7 +28,11 @@ public class Command {
         return name;
     }
 
-    public String getParam(String paramName) {
-        return params.get(paramName);
+    public String getParam(String... paramNames) {
+        for (String paramName : paramNames) {
+            final String result = params.get(paramName);
+            if (result != null) return result;
+        }
+        return null;
     }
 }

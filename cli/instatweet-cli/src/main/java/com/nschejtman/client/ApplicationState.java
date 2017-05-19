@@ -13,12 +13,22 @@ public abstract class ApplicationState {
         return commandImpl(command);
     }
 
-    protected ApplicationState error(String commandName) {
+    protected ApplicationState notACommand(String commandName) {
         Color.ANSI_RED.set();
         System.out.println("Invalid command " + commandName);
         Color.ANSI_RESET.set();
         System.out.println();
         return this;
     }
+
+    protected ApplicationState error(String errorMsg) {
+        Color.ANSI_RED.set();
+        System.out.println(errorMsg);
+        Color.ANSI_RESET.set();
+        System.out.println();
+        return this;
+    }
+
+
 
 }
