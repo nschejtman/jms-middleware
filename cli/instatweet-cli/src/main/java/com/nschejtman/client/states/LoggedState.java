@@ -1,13 +1,16 @@
 package com.nschejtman.client.states;
 
-import com.nschejtman.client.*;
+import com.nschejtman.client.ApplicationContext;
+import com.nschejtman.client.ApplicationState;
+import com.nschejtman.client.console.Color;
+import com.nschejtman.client.ApplicationCommand;
 import com.nschejtman.jms.JMSHandler;
 import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
 import com.nschejtman.utils.UserDao;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 
+import java.io.IOException;
 import java.util.List;
 
 public class LoggedState extends ApplicationState {
@@ -21,7 +24,7 @@ public class LoggedState extends ApplicationState {
         context.setPrecommand(precommand);
     }
 
-    public ApplicationState commandImpl(Command command) {
+    public ApplicationState commandImpl(ApplicationCommand command) {
         final String commandName = command.getName();
         switch (commandName) {
             case "help":
@@ -75,7 +78,7 @@ public class LoggedState extends ApplicationState {
         return new InitialState(context);
     }
 
-    private ApplicationState search(Command command) {
+    private ApplicationState search(ApplicationCommand command) {
         final String searchText = command.getParam("-u", "-1");
         final List<String> results = UserDao.search(searchText);
         System.out.println();
@@ -86,7 +89,7 @@ public class LoggedState extends ApplicationState {
         return this;
     }
 
-    private ApplicationState follow(Command command) {
+    private ApplicationState follow(ApplicationCommand command) {
         final String username = command.getParam("-u", "-1");
         final User followed = UserDao.get(username);
         if (followed != null) {
@@ -102,13 +105,18 @@ public class LoggedState extends ApplicationState {
         }
     }
 
-    private ApplicationState tweet(Command command) {
+    private ApplicationState tweet(ApplicationCommand command) {
         final String text = command.getParam("-t", "-1");
         final String imagePath = command.getParam("-p", "-2");
         final User user = context.getUser();
-        final Instatweet instatweet = new Instatweet(user, text, imagePath, DateTime.now());
-        final JMSHandler jmsHandler = new JMSHandler();
-        jmsHandler.tweet(instatweet);
+        final Instatweet instatweet;
+        try {
+            instatweet = new Instatweet(user, text, imagePath, DateTime.now());
+            final JMSHandler jmsHandler = new JMSHandler();
+            jmsHandler.tweet(instatweet);
+        } catch (IOException | IllegalArgumentException e) {
+            error(e.getMessage());
+        }
         return this;
     }
 
@@ -120,7 +128,7 @@ public class LoggedState extends ApplicationState {
             System.out.print(instatweet.getUser().getUsername() + "     |       ");
             System.out.print(instatweet.getDateTime().toString("hh:mm dd/MM/yyyy") + "\n");
             System.out.println(instatweet.getText());
-            System.out.println(instatweet.getPicture());
+            System.out.println(instatweet.getImageName());
             System.out.println();
             System.out.println();
         }

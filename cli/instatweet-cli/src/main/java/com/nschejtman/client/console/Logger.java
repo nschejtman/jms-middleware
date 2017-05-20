@@ -1,4 +1,6 @@
-package com.nschejtman.client;
+package com.nschejtman.client.console;
+
+import com.nschejtman.client.console.Color;
 
 public class Logger {
 

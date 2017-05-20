@@ -1,4 +1,4 @@
-package com.nschejtman.client;
+package com.nschejtman.client.console;
 
 public enum Color {
     ANSI_RESET("\u001B[0m"),

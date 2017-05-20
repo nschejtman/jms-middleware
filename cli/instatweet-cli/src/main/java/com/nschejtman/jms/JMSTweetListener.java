@@ -1,6 +1,6 @@
 package com.nschejtman.jms;
 
-import com.nschejtman.client.Logger;
+import com.nschejtman.client.console.Logger;
 import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
 import com.nschejtman.utils.UserDao;

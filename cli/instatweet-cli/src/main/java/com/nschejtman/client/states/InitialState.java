@@ -1,6 +1,7 @@
 package com.nschejtman.client.states;
 
 import com.nschejtman.client.*;
+import com.nschejtman.client.console.Logger;
 import com.nschejtman.jms.JMSHandler;
 import com.nschejtman.model.User;
 import com.nschejtman.utils.UserDao;
@@ -13,7 +14,7 @@ public class InitialState extends ApplicationState {
         context.setPrecommand("");
     }
 
-    public ApplicationState commandImpl(Command command) {
+    public ApplicationState commandImpl(ApplicationCommand command) {
         final String commandName = command.getName();
         switch (commandName) {
             case "help":
@@ -41,7 +42,7 @@ public class InitialState extends ApplicationState {
         System.out.println();
     }
 
-    private ApplicationState login(ApplicationContext context, Command command){
+    private ApplicationState login(ApplicationContext context, ApplicationCommand command){
         final String username = command.getParam("-u", "-1");
         final String password = command.getParam("-p", "-2");
         if (UserDao.validate(username, password)) {
@@ -58,7 +59,7 @@ public class InitialState extends ApplicationState {
         }
     }
 
-    private ApplicationState register(ApplicationContext context, Command command){
+    private ApplicationState register(ApplicationContext context, ApplicationCommand command){
         final String username = command.getParam("-u", "-1");
         final String password = command.getParam("-p", "-2");
         UserDao.register(username, password);

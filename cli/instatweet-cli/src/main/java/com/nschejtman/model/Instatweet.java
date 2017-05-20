@@ -1,14 +1,25 @@
 package com.nschejtman.model;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Instatweet implements Comparable<Instatweet>, Serializable {
     private User user;
     private String text;
-    private String picture;
+    private BufferedImage image;
+    private String imageName;
     private DateTime dateTime;
+    private static List<String> validExtensions = new ArrayList<String>() {{add("jpg"); add("gif"); }};
 
     public Instatweet() {
     }
@@ -18,15 +29,26 @@ public class Instatweet implements Comparable<Instatweet>, Serializable {
         return "Instatweet{" +
                 "user=" + user +
                 ", text='" + text + '\'' +
-                ", picture='" + picture + '\'' +
+                ", image='" + image + '\'' +
                 ", dateTime=" + dateTime +
                 '}';
     }
 
-    public Instatweet(User user, String text, String picture, DateTime dateTime) {
+    public Instatweet(User user, String text, String imagePath, DateTime dateTime) throws IOException, IllegalArgumentException {
         this.user = user;
         this.text = text;
-        this.picture = picture;
+        final File auxFile = new File(imagePath);
+        final String ext = FilenameUtils.getExtension(imagePath);
+        if (!validExtensions.contains(ext)){
+            throw new IllegalArgumentException("File is not an image");
+        }
+        if(!auxFile.exists()){
+            throw new IllegalArgumentException("Image path does not exist");
+        } else {
+            this.imageName = auxFile.getName();
+            image = ImageIO.read(auxFile);
+        }
+
         this.dateTime = dateTime;
     }
 
@@ -46,14 +68,6 @@ public class Instatweet implements Comparable<Instatweet>, Serializable {
         this.text = text;
     }
 
-    public String getPicture() {
-        return picture;
-    }
-
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
-
     public DateTime getDateTime() {
         return dateTime;
     }
@@ -64,5 +78,9 @@ public class Instatweet implements Comparable<Instatweet>, Serializable {
 
     public int compareTo(Instatweet o) {
         return (-1) * dateTime.compareTo(o.dateTime);
+    }
+
+    public String getImageName() {
+        return imageName;
     }
 }

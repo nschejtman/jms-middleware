@@ -1,5 +1,6 @@
 package com.nschejtman.client;
 
+import com.nschejtman.client.console.Color;
 import com.nschejtman.client.states.InitialState;
 import com.nschejtman.model.User;
 
@@ -26,7 +27,7 @@ public class ApplicationContext {
         System.out.print(precommand + "> ");
         final Scanner sc = new Scanner(System.in);
         Color.ANSI_GREEN.set();
-        state = state.command(new Command(sc.nextLine()));
+        state = state.command(new ApplicationCommand(sc.nextLine()));
         if (!state.isFinal()) {
             run();
         }

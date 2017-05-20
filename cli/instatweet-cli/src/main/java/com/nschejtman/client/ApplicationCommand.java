@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-public class Command {
+public class ApplicationCommand {
     private String name;
     private Map<String, String> params;
 
-    Command(String line) {
+    ApplicationCommand(String line) {
         final StringTokenizer tokenizer = new StringTokenizer(line, " ");
         name = tokenizer.nextToken();
         params = new HashMap<>();

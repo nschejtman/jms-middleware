@@ -1,7 +1,7 @@
 package com.nschejtman;
 
 import com.nschejtman.client.ApplicationContext;
-import com.nschejtman.client.Color;
+import com.nschejtman.client.console.Color;
 import com.nschejtman.jms.JMSHandler;
 
 import javax.annotation.Resource;
