@@ -13,6 +13,16 @@ public class Instatweet implements Comparable<Instatweet>, Serializable {
     public Instatweet() {
     }
 
+    @Override
+    public String toString() {
+        return "Instatweet{" +
+                "user=" + user +
+                ", text='" + text + '\'' +
+                ", picture='" + picture + '\'' +
+                ", dateTime=" + dateTime +
+                '}';
+    }
+
     public Instatweet(User user, String text, String picture, DateTime dateTime) {
         this.user = user;
         this.text = text;

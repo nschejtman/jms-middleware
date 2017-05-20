@@ -1,9 +1,10 @@
 package com.nschejtman.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class User {
+public class User implements Serializable {
     private String username;
     private List<User> following;
     private List<Instatweet> timeline;
@@ -14,6 +15,16 @@ public class User {
         this.following = new ArrayList<User>();
         this.timeline = new ArrayList<Instatweet>();
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", following=" + following +
+                ", timeline=" + timeline +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public String getPassword() {

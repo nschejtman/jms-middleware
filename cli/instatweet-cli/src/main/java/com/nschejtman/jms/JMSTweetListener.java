@@ -1,5 +1,6 @@
 package com.nschejtman.jms;
 
+import com.nschejtman.client.Logger;
 import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
 
@@ -15,9 +16,14 @@ public class JMSTweetListener implements MessageListener {
     }
 
     public void onMessage(Message message) {
+        System.out.println();
+        Logger.info("onMessageCalled");
+        Logger.info("Receiver --> " + receiver.toString());
         try {
             final Instatweet tweet = message.getBody(Instatweet.class);
+            Logger.info(tweet.toString());
             receiver.addToTimeline(tweet);
+            Logger.info("Receiver timeline size " + receiver.getTimeline().size());
         } catch (JMSException e) {
             e.printStackTrace();
         }

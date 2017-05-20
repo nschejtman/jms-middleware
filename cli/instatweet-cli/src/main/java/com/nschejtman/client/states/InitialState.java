@@ -1,9 +1,6 @@
 package com.nschejtman.client.states;
 
-import com.nschejtman.client.ApplicationContext;
-import com.nschejtman.client.ApplicationState;
-import com.nschejtman.client.Color;
-import com.nschejtman.client.Command;
+import com.nschejtman.client.*;
 import com.nschejtman.jms.JMSHandler;
 import com.nschejtman.model.User;
 import com.nschejtman.utils.UserDao;
@@ -40,9 +37,7 @@ public class InitialState extends ApplicationState {
         System.out.println("    register -u username -p password");
         System.out.println("    exit");
         System.out.println();
-        System.out.println(Color.ANSI_BLUE.get() + "[INFO]" + Color.ANSI_RESET.get() + " parameter specification -u -p " +
-                "is " +
-                "optional");
+        Logger.info("Parameter specification (e.g. -u -p) is optional while keeping order");
         System.out.println();
     }
 
@@ -51,7 +46,8 @@ public class InitialState extends ApplicationState {
         final String password = command.getParam("-p", "-2");
         if (UserDao.validate(username, password)) {
             final User user = UserDao.get(username);
-            context.setVar("user", user);
+            context.setUser(user);
+            System.out.println();
             System.out.println("Logged as " + username);
             System.out.println();
             return new LoggedState(context);
@@ -69,7 +65,7 @@ public class InitialState extends ApplicationState {
         final User user = new User(username, password);
         final JMSHandler jmsHandler = new JMSHandler();
         jmsHandler.registerUser(user);
-        context.setVar("user", user);
+        context.setUser(user);
         System.out.println();
         System.out.println("Registration successful");
         System.out.println("Logged as " + username);

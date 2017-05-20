@@ -4,8 +4,10 @@ package com.nschejtman.jms;
 import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
 
-import javax.jms.*;
-import javax.naming.InitialContext;
+import javax.jms.JMSConsumer;
+import javax.jms.JMSContext;
+import javax.jms.JMSProducer;
+import javax.jms.TemporaryTopic;
 import java.util.HashMap;
 import java.util.Map;
 

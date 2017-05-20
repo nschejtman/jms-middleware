@@ -1,9 +1,6 @@
 package com.nschejtman.client.states;
 
-import com.nschejtman.client.ApplicationContext;
-import com.nschejtman.client.ApplicationState;
-import com.nschejtman.client.Color;
-import com.nschejtman.client.Command;
+import com.nschejtman.client.*;
 import com.nschejtman.jms.JMSHandler;
 import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
@@ -18,7 +15,7 @@ public class LoggedState extends ApplicationState {
     LoggedState(ApplicationContext context) {
         this.context = context;
         final String precommand = Color.ANSI_BLUE.get() +
-                ((User) context.getVar("user")).getUsername() +
+                context.getUser().getUsername() +
                 Color.ANSI_RESET.get();
         context.setPrecommand(precommand);
     }
@@ -63,13 +60,13 @@ public class LoggedState extends ApplicationState {
     }
 
     private void whoami() {
-        final User user = (User) context.getVar("user");
+        final User user = context.getUser();
         System.out.println(user.getUsername());
         System.out.println();
     }
 
     private ApplicationState logout() {
-        context.resetVar("user");
+        context.resetUser();
         context.setPrecommand("");
         System.out.println();
         System.out.println("Logged out successfully");
@@ -93,7 +90,7 @@ public class LoggedState extends ApplicationState {
         final User followed = UserDao.get(username);
         if (followed != null) {
             final JMSHandler jmsHandler = new JMSHandler();
-            final User user = (User) context.getVar("user");
+            final User user = context.getUser();
             jmsHandler.follow(user, followed);
             System.out.println();
             System.out.println("Following " + username);
@@ -107,17 +104,18 @@ public class LoggedState extends ApplicationState {
     private ApplicationState tweet(Command command) {
         final String text = command.getParam("-t", "-1");
         final String imagePath = command.getParam("-p", "-2");
-        final User user = (User) context.getVar("user");
+        final User user = context.getUser();
         final Instatweet instatweet = new Instatweet(user, text, imagePath, DateTime.now());
         final JMSHandler jmsHandler = new JMSHandler();
         jmsHandler.tweet(instatweet);
         return this;
     }
 
-    private ApplicationState timeline(){
+    private ApplicationState timeline() {
         System.out.println();
-        final User user = (User) context.getVar("user");
+        final User user = context.getUser();
         final List<Instatweet> timeline = user.getTimeline();
+        Logger.info("Timeline size: " + timeline.size());
         for (Instatweet instatweet : timeline) {
             System.out.println(instatweet.getUser().getUsername());
             System.out.println(instatweet.getDateTime().toString());

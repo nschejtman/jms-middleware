@@ -1,14 +1,13 @@
 package com.nschejtman.client;
 
 import com.nschejtman.client.states.InitialState;
+import com.nschejtman.model.User;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class ApplicationContext {
     private ApplicationState state;
-    private final Map<String, Object> vars;
+    private User user;
 
     public void setPrecommand(String precommand) {
         this.precommand = precommand;
@@ -20,7 +19,6 @@ public class ApplicationContext {
     public ApplicationContext() {
         this.state = new InitialState(this);
         precommand = "";
-        vars = new HashMap<String, Object>();
     }
 
     public void run() {
@@ -35,20 +33,16 @@ public class ApplicationContext {
     }
 
 
-    public void setState(ApplicationState state) {
-        this.state = state;
+    public User getUser() {
+        return user;
     }
 
-    public Object getVar(String varname) {
-        return vars.get(varname);
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public void setVar(String varname, Object var) {
-        vars.put(varname, var);
-    }
-
-    public void resetVar(String varname){
-        vars.remove(varname);
+    public void resetUser() {
+        user = null;
     }
 
 

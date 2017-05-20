@@ -5,9 +5,9 @@
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/MessageReceiver.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/client/Command.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/utils/IdGenerator.java
-/Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/utils/LevenshteinDistance.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/model/User.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/client/ApplicationContext.java
+/Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/client/Logger.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/client/ApplicationState.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/jms/JMSTweetListener.java
 /Users/nicolas/projects/jms-middleware/cli/instatweet-cli/src/main/java/com/nschejtman/utils/UserDao.java

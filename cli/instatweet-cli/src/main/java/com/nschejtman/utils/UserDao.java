@@ -1,6 +1,7 @@
 package com.nschejtman.utils;
 
 import com.nschejtman.model.User;
+import org.apache.commons.text.similarity.LevenshteinDistance;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;

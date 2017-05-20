@@ -6,6 +6,7 @@ com/nschejtman/jms/JMSHandler.class
 com/nschejtman/utils/UserDao.class
 com/nschejtman/client/ApplicationState.class
 com/nschejtman/jms/JMSTweetListener.class
+com/nschejtman/client/Logger.class
 com/nschejtman/MessageSender.class
 com/nschejtman/client/ApplicationContext.class
 com/nschejtman/client/states/FinalState.class
@@ -14,4 +15,3 @@ com/nschejtman/MessageReceiver.class
 com/nschejtman/client/Color.class
 com/nschejtman/client/states/InitialState.class
 com/nschejtman/utils/IdGenerator.class
-com/nschejtman/utils/LevenshteinDistance.class
