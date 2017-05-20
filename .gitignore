@@ -2,3 +2,5 @@ cli/instatweet-cli/.idea/
 glassfish/middlewarejmsfrontend/.idea/
 wildfly/instatweet/.idea/
 *.iml
+cli/instatweet-cli/target/archive-tmp cli/instatweet-cli/target/classes cli/instatweet-cli/target/generated-sources cli/instatweet-cli/target/instatweet-cli-1.0-jar-with-dependencies.jar cli/instatweet-cli/target/instatweet-cli-1.0.jar cli/instatweet-cli/target/maven-archiver cli/instatweet-cli/target/maven-status
+cli/instatweet-cli/target
