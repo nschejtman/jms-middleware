@@ -1,6 +1,7 @@
 package com.nschejtman.client.states;
 
 import com.nschejtman.client.*;
+import com.nschejtman.client.console.Color;
 import com.nschejtman.client.console.Logger;
 import com.nschejtman.jms.JMSHandler;
 import com.nschejtman.model.User;
@@ -49,12 +50,11 @@ public class InitialState extends ApplicationState {
             final User user = UserDao.get(username);
             context.setUser(user);
             System.out.println();
-            System.out.println("Logged as " + username);
+            System.out.println(Color.ANSI_YELLOW.get() + "Logged as " + username + Color.ANSI_RESET.get());
             System.out.println();
             return new LoggedState(context);
         } else {
-            System.out.println("Invalid user or password");
-            System.out.println();
+            error("Invalid user or password");
             return this;
         }
     }
@@ -69,7 +69,7 @@ public class InitialState extends ApplicationState {
         context.setUser(user);
         System.out.println();
         System.out.println("Registration successful");
-        System.out.println("Logged as " + username);
+        System.out.println(Color.ANSI_YELLOW.get() + "Logged as " + username + Color.ANSI_RESET.get());
         System.out.println();
         return new LoggedState(context);
     }
