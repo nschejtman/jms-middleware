@@ -5,9 +5,9 @@
 2. Glassfish server (v4)
 
 ### Checking requirements
-1. Make sure you can run the "mvn --help" command. If not, just add your maven
+1. Make sure you can run the `mvn --help` command. If not, just add your maven
 home dir (apache-maven-3.5.0/bin) to your path.
-2. Make sure you can run the "asadmin" command. If not, just add your glassfish
+2. Make sure you can run the `asadmin` command. If not, just add your glassfish
 home dir (glassfish4.1.1/bin) to your path.
 
 For more info check the maven/glassfish documentation.
