@@ -13,5 +13,5 @@ home dir (glassfish4.1.1/bin) to your path.
 For more info check the maven/glassfish documentation.
 
 ## Run
-1. Modify the instatweet.sh script with the path to your glassfish home
-2. sh instatweet.sh
+1. Modify the _instatweet.sh_ script with the path to your glassfish home
+2. `sh instatweet.sh`
