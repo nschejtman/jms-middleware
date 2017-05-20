@@ -39,5 +39,9 @@ public class UserDao {
         return result;
     }
 
+    public static void update(@NotNull User user) {
+        users.put(user.getUsername(), user);
+    }
+
 
 }

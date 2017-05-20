@@ -3,6 +3,7 @@ package com.nschejtman.jms;
 import com.nschejtman.client.Logger;
 import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
+import com.nschejtman.utils.UserDao;
 
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -23,6 +24,7 @@ public class JMSTweetListener implements MessageListener {
             final Instatweet tweet = message.getBody(Instatweet.class);
             Logger.info(tweet.toString());
             receiver.addToTimeline(tweet);
+            UserDao.update(receiver);
             Logger.info("Receiver timeline size " + receiver.getTimeline().size());
         } catch (JMSException e) {
             e.printStackTrace();

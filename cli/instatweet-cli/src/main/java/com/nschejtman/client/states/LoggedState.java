@@ -6,6 +6,7 @@ import com.nschejtman.model.Instatweet;
 import com.nschejtman.model.User;
 import com.nschejtman.utils.UserDao;
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
 
 import java.util.List;
 
@@ -115,13 +116,13 @@ public class LoggedState extends ApplicationState {
         System.out.println();
         final User user = context.getUser();
         final List<Instatweet> timeline = user.getTimeline();
-        Logger.info("Timeline size: " + timeline.size());
         for (Instatweet instatweet : timeline) {
-            System.out.println(instatweet.getUser().getUsername());
-            System.out.println(instatweet.getDateTime().toString());
+            System.out.print(instatweet.getUser().getUsername() + "     |       ");
+            System.out.print(instatweet.getDateTime().toString("hh:mm dd/MM/yyyy") + "\n");
             System.out.println(instatweet.getText());
             System.out.println(instatweet.getPicture());
-            System.out.println("_________________________________________________");
+            System.out.println();
+            System.out.println();
         }
         System.out.println();
         return this;

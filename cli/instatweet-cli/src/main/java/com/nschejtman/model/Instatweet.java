@@ -63,6 +63,6 @@ public class Instatweet implements Comparable<Instatweet>, Serializable {
     }
 
     public int compareTo(Instatweet o) {
-        return dateTime.compareTo(o.dateTime);
+        return (-1) * dateTime.compareTo(o.dateTime);
     }
 }
